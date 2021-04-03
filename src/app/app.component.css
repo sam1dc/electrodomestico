@@ -1,0 +1,140 @@
+.img_size{
+	width: 100%;
+	height: 170px;
+	object-fit: contain;
+}
+
+.container_img{
+	width: 170px;
+	object-fit: cover;
+	border-right: 2px solid black;
+	padding: 5px;
+}
+
+.electro_box{
+	border-radius: 10px;
+	border: 2px solid black;
+
+	height:auto; 
+}
+
+
+.electro_title{
+	font-family: Gordita-Bold;
+}
+
+.h6{
+	margin-bottom: 2px;
+}
+
+.content_box{
+	width: calc(100% - 170px);
+}
+
+.text_description{
+	font-size: 14px;
+	margin-bottom: 0px;
+}
+
+.box_description{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.box_buttom{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.line{
+	margin-bottom: 0px;
+	border-bottom: 2px solid black;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.line:nth-child(1){
+	border-bottom: 2px solid black;
+	background: rgba(25, 118, 210, .6);
+	border-top-right-radius: 7px;
+
+}
+.line:nth-child(2){
+	border-right: 2px solid black;
+}
+.line:nth-child(3){
+	border-right: 2px solid black;
+}
+
+.line:nth-child(5){
+	border-right: 2px solid black;
+}
+
+@media (max-width: 767px) {
+	.text_description{
+		font-size: 13.5px;
+	}
+	
+	.line:nth-child(1){
+		border-bottom: 2px solid black;
+		background: rgba(25, 118, 210, .6);
+		border-top-right-radius: 7px;
+
+	}
+	.line:nth-child(2){
+		border-right: 2px solid black;
+	}
+	.line:nth-child(3){
+		border-right: 0px solid black;
+	}
+
+	.line:nth-child(4){
+		border-right: 2px solid black;
+	}
+
+	.line:nth-child(5){
+		border-right: 0px solid black;
+	}
+
+}
+
+@media (max-width: 575px){
+	.electro_box{
+		width: 100%;
+		border-radius: 10px;
+		border: 2px solid black;
+		height:auto; 
+	}
+
+	.content_box{
+		display: flex;
+		width: 100%;
+	}
+
+	.img_size{
+	width: 100%;
+	height: 140px;
+	margin: auto;
+	object-fit: contain;
+	}
+
+	.container_img{
+		width: 100%;
+		object-fit: cover;
+		border-right: 0px solid black;
+		border-bottom: 2px solid black;
+		padding: 5px;
+	}
+	.line:nth-child(1){
+		border-bottom: 2px solid black;
+		background: rgba(25, 118, 210, .6);
+		border-top-right-radius: 0px;
+	}
+	.electro_title{
+	font-family: Gordita-Bold;
+	font-size: 15px;
+	}
+
+	.h6{
+		font-size: 14px;
+	}
+}
