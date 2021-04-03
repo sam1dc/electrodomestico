@@ -26,11 +26,18 @@
     	    	<input
                 formControlName="nombre_del_equipo"
                 [value]="editarForm.nombre"            
-                class="form-control mt-1 mb-2"  
+                [ngClass]="{
+                      'form-control is-invalid': nombre.invalid && (nombre.dirty || nombre.touched), 
+                      'form-control  mt-1 mb-2':true }"
                 type="text" 
                 placeholder="Nombre del equipo"
                 id="name"      
-                >
+                required>
+                <p 
+                [ngClass]="{
+                      'd-block mb-0 text-danger text_info': nombre.invalid && (nombre.dirty || nombre.touched), 
+                      'd-none':true }"
+                >Error el campo es obligatorio</p>
     	    </div>
     		<div class="form-group col-sm px-0 mb-0">
                 <label for="descripcion" class="mb-0 label_font">Descripción: </label>
@@ -38,7 +45,6 @@
                 formControlName="descripcion"
                 [value]="editarForm.descripcion" 
                 class="form-control mt-1 mb-2 textarea" 
-
                 placeholder="Descripción" 
                 id="descripcion" 
                 rows="3"></textarea>
@@ -53,10 +59,17 @@
             type="number" 
             pattern="[0-9]*"
             min="0" 
-            class="form-control mt-1 mb-2" 
+            [ngClass]="{
+                      'form-control is-invalid': consumo.invalid && (consumo.dirty || consumo.touched), 
+                      'form-control  mt-1 mb-2':true }"
             placeholder="Consumo electrico"
             id="consumo"
             >
+            <p 
+            [ngClass]="{
+                      'd-block mb-0 text-danger text_info': consumo.invalid && (consumo.dirty || consumo.touched), 
+                      'd-none':true }"
+            >Error el campo es obligatorio</p>
         </div>
         <div class="col-6 pl-0">
             <label for="peso" class="mb-0 label_font">Peso: (Kg)</label>
@@ -65,13 +78,19 @@
             (keypress)="keyPress($event)" 
             type="number" 
             [value]="editarForm.pesokg"
-            pattern="/sol"
             min="0"
             inputmode="numeric"  
-            class="form-control mt-1 mb-2" 
+            [ngClass]="{
+                      'form-control is-invalid': peso.invalid && (peso.dirty || peso.touched), 
+                      'form-control  mt-1 mb-2':true }" 
             placeholder="Peso kg"
             id="peso"
             >
+            <p 
+            [ngClass]="{
+                      'd-block mb-0 text-danger text_info': peso.invalid && (peso.dirty || peso.touched), 
+                      'd-none':true }"
+            >Error el campo es obligatorio</p>
         </div>
         <div class="col-6 pr-0">
             <label for="anchura" class="mb-0 label_font">Anchura: (Cm)</label>
@@ -80,12 +99,18 @@
             [value]="editarForm.ancho"
             (keypress)="keyPress($event)" 
             type="number" 
-            pattern="/sol"
             min="0"
-            class="form-control mt-1 mb-2" 
+            [ngClass]="{
+                      'form-control is-invalid': ancho.invalid && (ancho.dirty || ancho.touched), 
+                      'form-control  mt-1 mb-2':true }" 
             placeholder="Anchura cm"
             id="anchura" 
             >
+            <p 
+            [ngClass]="{
+                      'd-block mb-0 text-danger text_info': ancho.invalid && (ancho.dirty || ancho.touched), 
+                      'd-none':true }"
+            >Error el campo es obligatorio</p>
         </div>
         <div class="col-6 pl-0">
             <label for="largo" class="mb-0 label_font">Largo: (Cm)</label>
@@ -94,12 +119,18 @@
             [value]="editarForm.largo"
             (keypress)="keyPress($event)" 
             type="number" 
-            pattern="/sol"
             min="0" 
-            class="form-control mt-1"
+            [ngClass]="{
+                      'form-control is-invalid': largo.invalid && (largo.dirty || largo.touched), 
+                      'form-control  mt-1 mb-2':true }"
             placeholder="largo cm"
             id="largo"
             >
+            <p 
+            [ngClass]="{
+                      'd-block mb-0 text-danger text_info': largo.invalid && (largo.dirty || largo.touched), 
+                      'd-none':true }"
+            >Error el campo es obligatorio</p>
         </div>
         <div class="col-6 pr-0">
             <label for="altura" class="mb-0 label_font">Altura: (Cm)</label>
@@ -108,12 +139,18 @@
             [value]="editarForm.altura"
             (keypress)="keyPress($event)" 
             type="number" 
-            pattern="/sol"
             min="0"  
-            class="form-control mt-1" 
+            [ngClass]="{
+                      'form-control is-invalid': altura.invalid && (altura.dirty || altura.touched), 
+                      'form-control  mt-1 mb-2':true }" 
             placeholder="altura cm"
             id="altura"
             >
+            <p 
+            [ngClass]="{
+                      'd-block mb-0 text-danger text_info': altura.invalid && (altura.dirty || altura.touched), 
+                      'd-none':true }"
+            >Error el campo es obligatorio</p>
             <input 
             formControlName="check"
             type="checkbox" 
@@ -121,11 +158,13 @@
             >
         </div>
       </div>
-     
     </form>
 </div>
 <div class="modal-footer" *ngIf="!editarForm.activar_btn">
-    <button type="button" class="btn btn_primary" data-dismiss="modal" (click)="guardar()">Registrar</button>
+
+    <button type="button" class="btn btn_primary" (click)="guardar()" 
+    data-dismiss="modal" [disabled]="!inventarioInfo.valid" >Registrar</button>
+
 </div>
 <div class="modal-footer" *ngIf="editarForm.activar_btn">
     <button type="button" class="btn btn-warning" data-dismiss="modal" (click)="enviarEditado()">Editar</button>

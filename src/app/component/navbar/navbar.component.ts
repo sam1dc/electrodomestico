@@ -110,6 +110,5 @@ export class NavbarComponent implements OnInit {
 	    this.limpiandoValue.img = '';
 	    this.limpiandoValue.check = 0;
 	}
-	
 
 }

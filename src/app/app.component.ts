@@ -1,6 +1,6 @@
 import { Component, Input,ViewChild} from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-
+// import { trigger, style, transition, animate, state } from '@angular/animations';
 
 
 
@@ -8,6 +8,20 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
+  // animations: [ 
+  //   trigger('enterState', [
+  //     state('void', style({
+  //       transform: 'translateY(-100px)',
+  //       opacity: 0
+  //     })),
+  //     transition(':enter', [
+  //       animate(300,style({
+  //         transform: 'translateY(0px)',
+  //         opacity: 1
+  //     }))
+  //   ])
+  // ])
+  // ]
 })
 
 
@@ -36,6 +50,7 @@ export class AppComponent {
     img: '',
     check: 0
   };
+
   sumadomestico:number=0;
   sumapeso:number=0;
   sumaancho:number=0;

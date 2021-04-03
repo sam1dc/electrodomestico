@@ -56,23 +56,40 @@
 </div>
 
 
-<button type="button" class="btn  btn-warning" (click)="busquedaSelect()">Buscar por seleccionados</button>
-<button type="button" class="btn btn-danger" (click)="volver()">volver</button>
-<br/>
-<!-- <p class="ml-2 mt-0"> resultado: {{ resultBusqueda }}</p>
-<p>Total de consumo energetico: {{sumadomestico}} <br> Total de Peso: {{sumapeso}} <br>
-Total de ancho: {{sumaancho}} <br> Total de largo:  {{sumalargo}} <br> Total de alto: {{sumaalto}}</p> -->
-<div class="d-flex flex-wrap mt-3">
-  <p class="px-4">Total de consumo energetico: {{sumadomestico}}</p>
-  <p class="px-4">Total de Peso: {{sumapeso}}</p>
-  <p class="px-4">Total de ancho: {{sumaancho}}</p>
-  <p class="px-4">Total de largo:  {{sumalargo}}</p>
-  <p class="px-4">Total de alto: {{sumaalto}}</p>
+<div class="container-md">
+  <div class="my-4 d-flex flex-wrap flex-md-column box_result">
+    <div class="d-flex flex-wrap box_result_title col-8 col-md-12 px-0">
+      <p class="mb-0 col-md-4  font_result text-center total_title">Total de consumo energetico:</p>
+      <p class="mb-0 col-md-2 font_result text-center total_title">Total de Peso:</p>
+      <p class="mb-0 col-md-2 font_result text-center total_title">Total de ancho:</p>
+      <p class="mb-0 col-md-2 font_result text-center total_title">Total de largo:</p>
+      <p class="mb-0 col-md-2 font_result text-center total_title">Total de alto:</p>
+    </div>
+    <!-- resultados -->
+    <div class="d-flex flex-wrap col-4 col-md-12 px-0">
+      <p class="mb-0 col-md-4 mx-auto text-center total_line">{{sumadomestico}} w</p>
+      <p class="mb-0 col-md-2 mx-auto text-center total_line">{{sumapeso}} kg</p>
+      <p class="mb-0 col-md-2 mx-auto text-center total_line">{{sumaancho}} cm</p>
+      <p class="mb-0 col-md-2 mx-auto text-center total_line">{{sumalargo}} cm</p>
+      <p class="mb-0 col-md-2 mx-auto text-center total_line">{{sumaalto}} cm</p>
+    </div>
+  </div> 
+</div>
+<div class="container-md">
+  <button type="button" class="btn btn_primary" (click)="busquedaSelect()" *ngIf="vista">Buscar por seleccionados</button>
+  <button type="button" class="btn btn-danger" (click)="volver()" *ngIf="!vista">volver</button>
 </div>
 
+
 <div class="container-md" *ngIf="vista">
-  <h2 class="text-center my-3">Electrodomésticos Registrados</h2>
-  <div class="d-flex flex-wrap electro_box my-4" *ngFor="let item of inventario; let i = index" >
+<div>
+  <div class="bg_inventario d-flex" *ngIf="inventario.length == 0 ">
+    <h2 class="m-auto text_nohay text-center">No se han registrado Electrodomésticos</h2>
+  </div>
+</div>
+  
+
+  <div class="d-flex flex-wrap electro_box my-4"  *ngFor="let item of inventario; let i = index"  >
     <div class="container_img d-flex">
       <img [src]="item.imgprev" alt="" class="img_size my-auto">
     </div>
@@ -82,7 +99,7 @@ Total de ancho: {{sumaancho}} <br> Total de largo:  {{sumalargo}} <br> Total de 
       <p class="h6 col-6 col-sm-6 col-md-4 line"><span class="electro_title">Anchura:</span> {{item.anchoCm}} cm</p>
       <p class="h6 col-6 col-sm-6 col-md-4 line"><span class="electro_title">Largo:</span> {{item.largoCm}} cm</p>
       <p class="h6 col-6 col-sm-6 col-md-4 line"><span class="electro_title">Altura:</span> {{item.alturaCm}} cm</p>
-      <p class="h6 col-12 col-sm-12 col-md-8 line"><span class="electro_title">Consumo Electrico:</span> {{item.consumo_energetico}} watios</p>
+      <p class="h6 col-12 col-sm-12 col-md-8 line"><span class="electro_title">Consumo Electrico:</span> {{item.consumo_energetico}} w</p>
         <div class="d-flex flex-column col-12">
           <div class=" box_description" style="min-width:100%; ">
             <h2 class="h6"><span class="electro_title">Descripción:</span></h2>
@@ -99,7 +116,7 @@ Total de ancho: {{sumaancho}} <br> Total de largo:  {{sumalargo}} <br> Total de 
               <button type="buttton" class="btn btn_secondary ml-2" (click)="eliminar(i)">Eliminar</button>
             </div>
           </div>
-           <form class="ml-auto">
+           <form class="ml-auto select">
               <div class="mr-2">
                 <input 
                 class="p-2 mr-2"
@@ -107,9 +124,8 @@ Total de ancho: {{sumaancho}} <br> Total de largo:  {{sumalargo}} <br> Total de 
                 (click)="checkbusqueda(i,$event.target.checked)"
                 id="{{i}}" 
                 >
-                <label for="{{i}}">checkquiar</label>
+                <label for="{{i}}">seleccionar</label>
               </div>
-              
             </form>
         </div>
     </div>
@@ -127,13 +143,12 @@ Total de ancho: {{sumaancho}} <br> Total de largo:  {{sumalargo}} <br> Total de 
       <p class="h6 col-6 col-sm-6 col-md-4 line"><span class="electro_title">Anchura:</span> {{item.anchoCm}} cm</p>
       <p class="h6 col-6 col-sm-6 col-md-4 line"><span class="electro_title">Largo:</span> {{item.largoCm}} cm</p>
       <p class="h6 col-6 col-sm-6 col-md-4 line"><span class="electro_title">Altura:</span> {{item.alturaCm}} cm</p>
-      <p class="h6 col-12 col-sm-12 col-md-8 line"><span class="electro_title">Consumo Electrico:</span> {{item.consumo_energetico}} watios</p>
+      <p class="h6 col-12 col-sm-12 col-md-8 line"><span class="electro_title">Consumo Electrico:</span> {{item.consumo_energetico}} w</p>
         <div class="d-flex flex-column col-12">
-          <div class=" box_description" style="min-width:100%; ">
+          <div class=" box_description" style="min-width:100%;  min-height: 96px;">
             <h2 class="h6"><span class="electro_title">Descripción:</span></h2>
             <p class=" text_description"> {{item.descripcion}} </p>
           </div>
-        </div>
     </div>
   </div>
 </div>

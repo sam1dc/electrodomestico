@@ -36,15 +36,15 @@ export class FormularioComponent implements OnInit{
 @Input() indexPosition:number;
 
   inventarioInfo = new FormGroup({ 
-  nombre_del_equipo:  new FormControl('', [Validators.required]), 
-  descripcion:  new FormControl('', [Validators.required]),  
-  consumo_energetico: new FormControl(0 , [Validators.required]), 
-  pesoKg: new FormControl(0 , [Validators.required]), 
-  anchoCm: new FormControl(0 , [Validators.required]), 
-  largoCm: new FormControl(0 , [Validators.required]),  
-  alturaCm: new FormControl(0 , [Validators.required]),
-  imgprev: new FormControl('',[Validators.required]),
-  check: new FormControl(false, [Validators.required])
+  nombre_del_equipo:  new FormControl("",[Validators.required]), 
+  descripcion:  new FormControl(''),  
+  consumo_energetico: new FormControl(0,[Validators.required]), 
+  pesoKg: new FormControl(0, [Validators.required]), 
+  anchoCm: new FormControl(0, [Validators.required]), 
+  largoCm: new FormControl(0, [Validators.required]),  
+  alturaCm: new FormControl(0, [Validators.required]),
+  imgprev: new FormControl(''),
+  check: new FormControl(false)
 });
 
   name:string='';
@@ -55,7 +55,7 @@ export class FormularioComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
+    this.inventarioInfo.reset();
   }
 
  
@@ -104,6 +104,10 @@ keyPress(event: KeyboardEvent) {
 
 
   guardar(){
+    // if (this.inventarioInfo.value.nombre_del_equipo == '') {
+    //   alert("Debe asignar el nombre del equipo");
+    //   return;
+    // }
     this.inventario.push(this.inventarioInfo.value);
     this.inventarioInfo.value.imgprev =  this.imgprev;
 
@@ -121,6 +125,7 @@ keyPress(event: KeyboardEvent) {
     
 
   }
+  
 
   enviarEditado(){
 
@@ -144,6 +149,28 @@ keyPress(event: KeyboardEvent) {
   //   let local_inventario =  localStorage.getItem("inventario");
   //   console.log("locak store: ", JSON.parse(local_inventario));
   // }
+
+  //funciones para validar
+  get nombre(){
+    return this.inventarioInfo.get('nombre_del_equipo');
+  }
+
+  get consumo(){
+    return this.inventarioInfo.get('consumo_energetico');
+  }
+
+  get peso(){
+    return this.inventarioInfo.get('pesoKg');
+  }
+  get ancho(){
+    return this.inventarioInfo.get('anchoCm');
+  }
+  get largo(){
+    return this.inventarioInfo.get('largoCm');
+  }
+  get altura(){
+    return this.inventarioInfo.get('alturaCm');
+  }
 
 }
 
